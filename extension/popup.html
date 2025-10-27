@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethicore Guardian</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: black;
+            color: #e5e7eb;
+            width: 500px;
+            min-height: 600px;
+            overflow-y: auto;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            margin-left: auto;
+            padding: 6px 12px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #10b981;
+            color: white;
+        }
+
+        .status-warning {
+            background: #f59e0b;
+            color: #1f2937;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .threat-level-critical {
+            color: #ef4444;
+        }
+
+        .threat-level-high {
+            color: #f97316;
+        }
+
+        .threat-level-medium {
+            color: #eab308;
+        }
+
+        .threat-level-low {
+            color: #3b82f6;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #93c5fd;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .threat-log {
+            max-height: 250px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 8px;
+        }
+
+        .threat-entry {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #60a5fa;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .threat-entry.critical {
+            border-left-color: #ef4444;
+        }
+
+        .threat-entry.high {
+            border-left-color: #f97316;
+        }
+
+        .threat-entry.medium {
+            border-left-color: #eab308;
+        }
+
+        .threat-time {
+            color: #9ca3af;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 20px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e5e7eb;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .config-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+
+        .config-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .config-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .toggle-switch.active {
+            background: #10b981;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 10px;
+            transition: left 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            left: 22px;
+        }
+
+        .uptime {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .threat-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .threat-count {
+            text-align: center;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            font-size: 11px;
+        }
+
+        .threat-count-value {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .threat-count-label {
+            color: #9ca3af;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+		<img src="icons/icon-48.png" alt="Guardian">
+	</div>
+            <div>
+                <h1>Ethicore Engine™ - Guardian</h1>
+            </div>
+            <div class="status-badge status-active" id="statusBadge">ACTIVE</div>
+        </header>
+
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="threatsDetected">0</div>
+                <div class="stat-label">Threats Detected</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value threat-level-critical" id="threatsBlocked">0</div>
+                <div class="stat-label">Threats Blocked</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="requestsAnalyzed">0</div>
+                <div class="stat-label">Requests Scanned</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="responsesAnalyzed">0</div>
+                <div class="stat-label">Responses Scanned</div>
+            </div>
+        </div>
+
+        <!-- Threat Summary by Severity -->
+        <div class="section">
+            <div class="section-title">Threat Breakdown</div>
+            <div class="threat-summary">
+                <div class="threat-count">
+                    <div class="threat-count-value threat-level-critical" id="criticalCount">0</div>
+                    <div class="threat-count-label">Critical</div>
+                </div>
+                <div class="threat-count">
+                    <div class="threat-count-value threat-level-high" id="highCount">0</div>
+                    <div class="threat-count-label">High</div>
+                </div>
+                <div class="threat-count">
+                    <div class="threat-count-value threat-level-medium" id="mediumCount">0</div>
+                    <div class="threat-count-label">Medium</div>
+                </div>
+                <div class="threat-count">
+                    <div class="threat-count-value threat-level-low" id="lowCount">0</div>
+                    <div class="threat-count-label">Low</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Threats Log -->
+        <div class="section">
+            <div class="section-title">Recent Activity</div>
+            <div class="threat-log" id="threatLog">
+                <div class="empty-state">No threats detected yet. Stay safe! ✅</div>
+            </div>
+        </div>
+
+        <!-- Configuration -->
+        <div class="section">
+            <div class="section-title">Configuration</div>
+            <div class="config-section">
+                <div class="config-item">
+                    <span>Block Critical Threats</span>
+                    <div class="toggle-switch active" id="toggleCritical"></div>
+                </div>
+                <div class="config-item">
+                    <span>Block High Severity</span>
+                    <div class="toggle-switch active" id="toggleHigh"></div>
+                </div>
+                <div class="config-item">
+                    <span>Enable Audit Logging</span>
+                    <div class="toggle-switch active" id="toggleAudit"></div>
+                </div>
+                <div class="config-item">
+                    <span>Desktop Notifications</span>
+                    <div class="toggle-switch active" id="toggleNotifications"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="btn-secondary" id="viewAudit">📋 View Audit Trail</button>
+            <button class="btn-danger" id="clearLogs">🗑️ Clear Logs</button>
+        </div>
+
+        <!-- Uptime -->
+        <div class="uptime">
+            <strong>Uptime:</strong> <span id="uptime">0m</span><br>
+            <strong>Last Updated:</strong> <span id="lastUpdate">just now</span>
+        </div>
+
+        <!-- Phase 1 Multi-Layer Stats -->
+        <div class="section">
+            <div class="section-title">🎯 Phase 1: Multi-Layer Defense</div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="multiLayerAnalyses">0</div>
+                    <div class="stat-label">ML Analyses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="behavioralAnomalies">0</div>
+                    <div class="stat-label">Behavioral Flags</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="semanticMatches">0</div>
+                    <div class="stat-label">Semantic Matches</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="avgAnalysisTime">0ms</div>
+                    <div class="stat-label">Avg Analysis Time</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tier 1 Features Section -->
+	<div class="section">
+    	    <div class="section-title">🚀 Tier 1 Features</div>
+    	<div class="config-section">
+            <div class="config-item">
+            	<span>Multi-Turn Detection</span>
+            	<div class="toggle-switch active" id="toggleMultiTurn"></div>
+        </div>
+        <div class="config-item">
+            <span>Smart Allowlist</span>
+            <div class="toggle-switch active" id="toggleAllowlist"></div>
+        </div>
+        <div class="config-item">
+            <span>Threat Intel Sync</span>
+            <div class="toggle-switch active" id="toggleThreatIntel"></div>
+        </div>
+        <div class="config-item">
+            <span>Collaborative Feed</span>
+            <div class="toggle-switch" id="toggleCollabFeed"></div>
+        </div>
+    </div>
+    <div style="font-size: 11px; color: #9ca3af; margin-top: 8px;">
+        <strong>Last Sync:</strong> <span id="lastUpdate">checking...</span>
+    </div>
+</div>
+
+	<!-- Additional Controls -->
+	<div class="controls">
+    	    <button class="btn-secondary" id="manageAllowlist">✓ Manage Allowlist</button>
+    	    <button class="btn-primary" id="syncNow">🔄 Sync Now</button>
+	</div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

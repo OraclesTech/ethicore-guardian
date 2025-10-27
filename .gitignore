@@ -1,0 +1,157 @@
+# ============================================================
+# Ethicore Engine™ - Guardian - .gitignore
+# ============================================================
+
+# ============================================================
+# PROPRIETARY / SENSITIVE (Never commit these)
+# ============================================================
+
+# Trained ML models (proprietary)
+models/threat-detector-v*.h5
+models/threat-detector-v*.json
+models/threat-detector-v*.bin
+models/*.weights
+models/*.bin
+models/*.h5
+models/*.pb
+models/*.pth
+models/*.onnx
+models/embeddings-cache.json
+models/model.json
+models/group*.bin
+models/*shard*
+proprietary/
+
+# Training artifacts (contain proprietary learning)
+training/
+experiments/
+checkpoints/
+*.ckpt
+*.ckpt.*
+*.tfevents.*
+tensorboard/
+
+# Training data and datasets (potentially sensitive)
+data/training/
+data/real/
+data/production/
+datasets/
+*.csv.gz
+*.jsonl.gz
+training_data/
+
+# Hyperparameters and configs (tuned for competitive advantage)
+config.trained.json
+hyperparameters.json
+tuned_config.json
+
+# Feature scaling parameters (learned from data)
+models/scaler.json
+models/normalizer.json
+models/feature_stats.json
+
+# API keys, secrets, credentials
+.env
+.env.local
+secrets/
+*.key
+*.pem
+*.secret
+
+# Private configuration
+config.private.json
+secrets.json
+
+# Build artifacts containing proprietary code
+dist/proprietary/
+build/proprietary/
+
+# ============================================================
+# DEVELOPMENT FILES
+# ============================================================
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
+*.zip
+*.xpi
+*.crx
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+test-results/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# ============================================================
+# FIREFOX EXTENSION SPECIFIC
+# ============================================================
+
+# Generated extension packages
+ethicore-guardian-*.zip
+ethicore-guardian-*.xpi
+
+# Firefox profiles (if testing locally)
+firefox-profile/
+
+# Web-ext artifacts
+web-ext-artifacts/
+
+# ============================================================
+# SENSITIVE DATA (User data, even in dev)
+# ============================================================
+
+# Never commit real user data
+user-data/
+test-data/real-users/
+*.sqlite
+*.db
+
+# Don't commit incident reports with real data
+incidents/real/
+
+# ============================================================
+# OPTIONAL (Depends on your workflow)
+# ============================================================
+
+# If you use package-lock (or don't)
+# Uncomment ONE of these:
+package-lock.json  # If you want contributors to use their own versions
+# yarn.lock          # Or this if you use Yarn
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.directory
