@@ -11,7 +11,7 @@ Developed by [Oracles Technologies LLC](https://oraclestechnologies.com) • Par
 
 ---
 
-## 🛡️ What is Guardian?
+## What is Guardian?
 
 **Ethicore Engine™ - Guardian** is a free, open-source browser extension that provides **real-time protection** against AI security threats. Using a sophisticated multi-layer defense architecture, Guardian detects and blocks:
 
@@ -23,7 +23,7 @@ Developed by [Oracles Technologies LLC](https://oraclestechnologies.com) • Par
 - **Automated Bot Attacks**
 - **Context Pollution**
 
-### 🌟 Why Open Source?
+### Why Open Source?
 
 Security through obscurity doesn't work. For AI safety tools to be trusted, they must be **transparent, auditable, and community-driven**. Guardian is open-source because:
 
@@ -34,7 +34,7 @@ Security through obscurity doesn't work. For AI safety tools to be trusted, they
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -60,7 +60,7 @@ cd ethicore-guardian
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 Guardian uses a **6-layer defense system** with weighted voting:
 
@@ -102,7 +102,7 @@ Guardian uses a **6-layer defense system** with weighted voting:
 
 ---
 
-## 🔬 Key Innovations
+## Key Innovations
 
 ### 1. **Behavioral Profiling Engine**
 Detects automation and bots by analyzing:
@@ -144,7 +144,7 @@ Reduces false positives while maintaining security:
 
 ---
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 | Metric | Value | Notes |
 |--------|-------|-------|
@@ -156,7 +156,7 @@ Reduces false positives while maintaining security:
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Frontend:** Vanilla JavaScript (no dependencies)
 - **Extension API:** WebExtensions (Firefox/Chrome compatible)
@@ -166,7 +166,7 @@ Reduces false positives while maintaining security:
 
 ---
 
-## 📖 Documentation
+## Documentation
 
 - **[Architecture Deep Dive](ARCHITECTURE.md)** - Technical implementation details
 - **[Security Policy](SECURITY.md)** - Responsible disclosure and security practices
@@ -176,22 +176,22 @@ Reduces false positives while maintaining security:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Guardian's effectiveness improves with community collaboration.
 
 **Ways to contribute:**
-- 🐛 **Report bugs** - Help us squash issues
-- 🎯 **Add threat patterns** - Share new jailbreak techniques
-- 🧪 **Submit test cases** - Real-world examples
-- 📝 **Improve docs** - Make it easier for others
-- 🔬 **Research papers** - Academic collaboration welcome
+- **Report bugs** - Help us squash issues
+- **Add threat patterns** - Share new jailbreak techniques
+- **Submit test cases** - Real-world examples
+- **Improve docs** - Make it easier for others
+- **Research papers** - Academic collaboration welcome
 
 **Get started:** Read [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
-## 🔒 Privacy & Security
+## Privacy & Security
 
 ### Our Commitment
 - ❌ **No data collection** - Everything runs locally
@@ -209,7 +209,7 @@ We welcome contributions! Guardian's effectiveness improves with community colla
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file.
 
@@ -217,7 +217,7 @@ This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file
 
 ---
 
-## 🌐 Ethicore Engine™ Platform
+## Ethicore Engine™ Platform
 
 Guardian is the **free, open-source component** of the Ethicore Engine™ platform:
 
@@ -230,7 +230,7 @@ Guardian is the **free, open-source component** of the Ethicore Engine™ platfo
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Guardian was built with the mission to **innovate with integrity**. Special thanks to:
 
@@ -241,23 +241,23 @@ Guardian was built with the mission to **innovate with integrity**. Special than
 
 ---
 
-## 📞 Contact & Support
+## Contact & Support
 
-- **🐛 Bug Reports:** [GitHub Issues](https://github.com/oraclestech/ethicore-guardian/issues)
-- **💬 Discussions:** [GitHub Discussions](https://github.com/oraclestech/ethicore-guardian/discussions)
-- **🔒 Security Issues:** security@oraclestechnologies.com (see [SECURITY.md](SECURITY.md))
-- **📧 General Inquiries:** support@oraclestechnologies.com
-- **🏢 Business/Enterprise:** info@oraclestechnologies.com
+- **Bug Reports:** [GitHub Issues](https://github.com/oraclestech/ethicore-guardian/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/oraclestech/ethicore-guardian/discussions)
+- **Security Issues:** security@oraclestechnologies.com (see [SECURITY.md](SECURITY.md))
+- **General Inquiries:** support@oraclestechnologies.com
+- **Business/Enterprise:** info@oraclestechnologies.com
 
 ---
 
-## ⭐ Star History
+## Star History
 
 If Guardian helps protect you or your users, please consider:
-- ⭐ **Starring this repo** - Show your support
-- 🐦 **Sharing on social media** - Spread awareness
-- 📝 **Writing about it** - Blog posts, papers, reviews
-- 💰 **Sponsoring** (Optional) - Support continued development
+- **Starring this repo** - Show your support
+- **Sharing on social media** - Spread awareness
+- **Writing about it** - Blog posts, papers, reviews
+- **Sponsoring** (Optional) - Support continued development
 
 ---
 
